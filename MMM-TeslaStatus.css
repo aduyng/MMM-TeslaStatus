@@ -12,6 +12,10 @@
   line-height: 2rem;
 }
 
+.title .icon {
+  color: lightcoral;
+}
+
 .attributes {
   list-style: none;
   margin: 0;
@@ -23,6 +27,25 @@
   text-align: left;
   font-size: 1rem;
   line-height: 1.5rem;
-  color: #ccc;
+  color: #fff;
   opacity: 0.75;
+}
+.attributes .attribute.battery-level.battery-level-ok .value{
+  color: lightgreen;
+}
+
+.attributes .attribute.battery-level.battery-level-warning .value{
+  color: orange;
+}
+
+.attributes .attribute.battery-level.battery-level-danger .value{
+  color: lightcoral;
+}
+
+.attributes .attribute.sentry-mode.sentry-mode-active .value{
+  color: lightcoral;
+}
+
+.attributes .attribute .name:after{
+  content: ': ';
 }
