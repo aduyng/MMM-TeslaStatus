@@ -19,8 +19,8 @@
     "prettier": "^1.18.2"
   },
   "files": [
-    "MMM-OITStatus.css",
-    "MMM-OITStatus.js",
+    "MMM-TeslaStatus.css",
+    "MMM-TeslaStatus.js",
     "node_helper.js"
   ]
 }

@@ -1,3 +1,4 @@
+/* global _, moment */
 Module.register('MMM-TeslaStatus', {
   defaults: {
     firebaseDatabaseRootRef: '/vehicles/131100342',
@@ -37,25 +38,31 @@ Module.register('MMM-TeslaStatus', {
       return wrapper;
     }
     const batteryLevel = _.get(this.tesla, 'charging.batteryLevel', 'N/A');
-    const getBatteryLevelClass = function(bl){
-      if(bl < 30) {
+    const getBatteryLevelClass = function(bl) {
+      if (bl < 30) {
         return 'danger';
       }
-      if(bl < 50) {
+      if (bl < 50) {
         return 'warning';
       }
-      if( bl >= 50){
+      if (bl >= 50) {
         return 'ok';
       }
 
       return '';
-    }
+    };
 
     const sentryMode = _.get(this.tesla, 'vehicleState.sentryMode');
     wrapper.innerHTML = `
-      <h2 class="title"><span class="zmdi zmdi-car zmdi-hc-2x icon"></span> ${_.get(this.tesla, 'displayName', this.config.title)}</h2>
+      <h2 class="title"><span class="zmdi zmdi-car zmdi-hc-2x icon"></span> ${_.get(
+        this.tesla,
+        'displayName',
+        this.config.title,
+      )}</h2>
       <ul class="attributes">
-        <li class="attribute battery-level battery-level-${getBatteryLevelClass(batteryLevel)}">
+        <li class="attribute battery-level battery-level-${getBatteryLevelClass(
+          batteryLevel,
+        )}">
           <span class="icon zmdi zmdi-battery zmdi-hc-fw"></span>
           <span class="name">Battery Level</span>
           <span class="value">${batteryLevel}%</span>
@@ -63,22 +70,40 @@ Module.register('MMM-TeslaStatus', {
         <li class="attribute">
           <span class="icon zmdi zmdi-car zmdi-hc-fw"></span>
           <span class="name">Battery Range</span>
-          <span class="value">${_.get(this.tesla, 'charging.batteryRange', 'N/A')}m</span>
+          <span class="value">${_.get(
+            this.tesla,
+            'charging.batteryRange',
+            'N/A',
+          )}m</span>
         </li>
         <li class="attribute">
           <span class="icon zmdi zmdi-cloud-outline-alt zmdi-hc-fw"></span>
           <span class="name">Inside</span>
-          <span class="value">${_.get(this.tesla, 'climate.insideTemp', 'N/A')}&deg;F</span>
+          <span class="value">${_.get(
+            this.tesla,
+            'climate.insideTemp',
+            'N/A',
+          )}&deg;F</span>
         </li>
         <li class="attribute">
           <span class="icon zmdi zmdi-cloud-outline zmdi-hc-fw"></span>
           <span class="name">Outside</span>
-          <span class="value">${_.get(this.tesla, 'climate.outsideTemp', 'N/A')}&deg;F</span>
+          <span class="value">${_.get(
+            this.tesla,
+            'climate.outsideTemp',
+            'N/A',
+          )}&deg;F</span>
         </li>
-        <li class="attribute sentry-mode ${sentryMode ? 'sentry-mode-active': ''}">
+        <li class="attribute sentry-mode ${
+          sentryMode ? 'sentry-mode-active' : ''
+        }">
           <span class="icon zmdi zmdi-shield-security zmdi-hc-fw"></span>
           <span class="name">Sentry Mode</span>
-          <span class="value">${sentryMode ? '<span class="zmdi zmdi-play-circle"></span> On' : 'Off'}</span>
+          <span class="value">${
+            sentryMode
+              ? '<span class="zmdi zmdi-play-circle"></span> On'
+              : 'Off'
+          }</span>
         </li>
         <li class="attribute">
           <span class="icon zmdi zmdi-time zmdi-hc-fw"></span>
