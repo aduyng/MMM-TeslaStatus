@@ -1,5 +1,5 @@
 {
-  "name": "mmm-TeslaStatus",
+  "name": "mmm-teslastatus",
   "version": "0.2.4",
   "dependencies": {
     "firebase": "^6.1.0"
